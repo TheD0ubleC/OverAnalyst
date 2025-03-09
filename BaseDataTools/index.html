@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>比赛数据录入 - 每次选择后立即刷新</title>
+
+  <!-- 引入外部CSS -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Highlight.js 样式 (CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/github.min.css">
+</head>
+<body>
+  <div class="left-panel">
+    <h2>比赛数据录入</h2>
+
+    <!-- 初始阵容预览 -->
+    <div class="composition-preview">
+      <strong>初始阵容：</strong>
+      <div id="initialTeam1Preview">队伍 1：</div>
+      <div id="initialTeam2Preview">队伍 2：</div>
+    </div>
+
+    <!-- 基本信息 -->
+    <label for="map_name">地图名称</label>
+    <input type="text" id="map_name" placeholder="例如：皇家赛道" title="地图名称">
+    <br/>
+
+    <label for="weaker">较弱队伍</label>
+    <select id="weaker" title="较弱队伍 (team_1 / team_2)">
+      <option value="team_1">Team 1</option>
+      <option value="team_2">Team 2</option>
+    </select>
+
+    <label for="starting_status">初始优势方</label>
+    <select id="starting_status" title="初始优势方 (team_1_advantage / team_2_advantage)">
+      <option value="team_1_advantage">Team 1</option>
+      <option value="team_2_advantage">Team 2</option>
+      <option value="balanced">balanced</option>
+    </select>
+
+    <!-- 队伍1（蓝色背景） -->
+    <div class="team-section team1-section">
+      <h3>队伍 1 阵容</h3>
+      <label for="team1_1">坦克</label>
+      <select id="team1_1" title="队伍1的坦克"></select>
+
+      <label for="team1_2">输出1</label>
+      <select id="team1_2" title="队伍1的输出1"></select>
+
+      <label for="team1_3">输出2</label>
+      <select id="team1_3" title="队伍1的输出2"></select>
+
+      <label for="team1_4">辅助1</label>
+      <select id="team1_4" title="队伍1的辅助1"></select>
+
+      <label for="team1_5">辅助2</label>
+      <select id="team1_5" title="队伍1的辅助2"></select>
+    </div>
+
+    <!-- 队伍2（红色背景） -->
+    <div class="team-section team2-section">
+      <h3>队伍 2 阵容</h3>
+      <label for="team2_1">坦克</label>
+      <select id="team2_1" title="队伍2的坦克"></select>
+
+      <label for="team2_2">输出1</label>
+      <select id="team2_2" title="队伍2的输出1"></select>
+
+      <label for="team2_3">输出2</label>
+      <select id="team2_3" title="队伍2的输出2"></select>
+
+      <label for="team2_4">辅助1</label>
+      <select id="team2_4" title="队伍2的辅助1"></select>
+
+      <label for="team2_5">辅助2</label>
+      <select id="team2_5" title="队伍2的辅助2"></select>
+    </div>
+
+    <h3>当前待编辑事件</h3>
+    <div class="event-form" id="pendingEventForm">
+      <label for="change_team">队伍</label>
+      <select id="change_team" title="选择要换人的队伍">
+        <option value="team_1_changes">队伍 1</option>
+        <option value="team_2_changes">队伍 2</option>
+      </select>
+
+      <label for="change_old_hero">换下</label>
+      <select id="change_old_hero" title="换下的旧英雄">
+        <option value="">原英雄</option>
+      </select>
+
+      <label for="change_new_hero">换上</label>
+      <select id="change_new_hero" title="换上的新英雄">
+        <option value="">新英雄</option>
+      </select>
+
+      <button onclick="addHeroChange()">添加换人记录</button>
+      <br/>
+
+      <label>事件后优势</label>
+      <select id="event_new_status" title="事件后哪方优势？">
+        <option value="">无变化</option>
+        <option value="team_1_advantage">Team 1 优势</option>
+        <option value="team_2_advantage">Team 2 优势</option>
+        <option value="balanced">平衡</option>
+      </select>
+      <button onclick="confirmEvent()">确认事件</button>
+    </div>
+
+    <div class="event-pending-changes" id="pendingChangesView">
+      <p>暂无换人记录</p>
+    </div>
+
+    <h3>事件列表</h3>
+    <div class="event-list" id="eventList">
+      <p>暂无事件</p>
+    </div>
+
+    <label for="map_result">地图结果</label>
+    <select id="map_result" title="地图结果 (team_1_win / team_2_win)">
+      <option value="team_1_win">Team 1 胜利</option>
+      <option value="team_2_win">Team 2 胜利</option>
+    </select>
+
+    <br><br>
+    <button onclick="generateJSON()">生成 JSON</button>
+  </div>
+
+  <!-- 右侧面板：JSON高亮 & 反向导入 -->
+  <div class="right-panel">
+    <h2>生成的 JSON 数据</h2>
+    <pre id="jsonOutput" class="language-json">暂无数据</pre>
+
+    <h3>反向导入 JSON</h3>
+    <textarea id="importJsonTextarea" placeholder="在此粘贴 JSON..." rows="10"></textarea>
+    <button onclick="importJSON()">导入 JSON</button>
+  </div>
+
+  <!-- Highlight.js (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/lib/highlight.js"></script>
+  <!-- 业务逻辑JS -->
+  <script src="script.js"></script>
+</body>
+</html>

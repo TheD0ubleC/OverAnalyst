@@ -1,0 +1,81 @@
+/* 布局，左侧70%，右侧30% */
+.left-panel {
+  width: 70%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #f7f7f7;
+  overflow-y: auto;
+}
+.right-panel {
+  width: 30%;
+  padding: 20px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-left: 1px solid #ccc;
+  overflow-y: auto;
+}
+
+/* 其他基础样式 */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  height: 100vh;
+}
+label {
+  display: inline-block;
+  margin: 5px 0;
+  font-weight: bold;
+}
+input[type="text"],
+select,
+button,
+textarea {
+  margin-bottom: 10px;
+  padding: 6px 8px;
+  box-sizing: border-box;
+}
+select {
+  width: 100%;
+}
+.team-section {
+  margin-bottom: 20px;
+  padding: 10px;
+}
+.team1-section {
+  background: #e0f0ff; /* 蓝色背景 */
+}
+.team2-section {
+  background: #ffe0e0; /* 红色背景 */
+}
+.composition-preview {
+  background: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.event-form,
+.event-pending-changes {
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+.event-list {
+  margin-bottom: 20px;
+}
+.event-item {
+  border: 1px solid #ccc;
+  background: #fff;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: #fafafa;
+  padding: 10px;
+  border: 1px solid #ccc;
+  min-height: 200px;
+}

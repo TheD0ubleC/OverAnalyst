@@ -1,0 +1,43 @@
+{
+"maps": [
+      {
+        "map_name": "伊利奥斯",
+        "weaker": "team_1",
+        "starting_status": "team_2_advantage",
+        "team_1": [
+          "西格玛",
+          "源氏",
+          "士兵：76",
+          "莫伊拉",
+          "雾子"
+        ],
+        "team_2": [
+          "温斯顿",
+          "源氏",
+          "索杰恩",
+          "雾子",
+          "安娜"
+        ],
+        "events": [
+          {
+            "team_1_changes": {
+              "西格玛": "D.Va",
+              "源氏": "卡西迪",
+              "士兵：76": "死神"
+            },
+            "team_2_changes": {},
+            "new_status": "team_1_advantage"
+          },
+          {
+            "team_1_changes": {},
+            "team_2_changes": {
+              "温斯顿": "末日铁拳"
+            },
+            "new_status": "team_2_advantage"
+          }
+        ],
+        "map_result": "team_2_win"
+      }
+    ],
+    "final_result": "team_2_win"
+}

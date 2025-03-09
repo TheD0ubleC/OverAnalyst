@@ -1,0 +1,43 @@
+{
+  "maps": [
+    {
+      "map_name": "伊利奥斯",
+      "weaker": "team_1",
+      "starting_status": "team_2_advantage",
+      "team_1": [
+        "查莉娅",
+        "卡西迪",
+        "死神",
+        "莫伊拉",
+        "雾子"
+      ],
+      "team_2": [
+        "末日铁拳",
+        "源氏",
+        "法老之鹰",
+        "雾子",
+        "安娜"
+      ],
+      "events": [
+        {
+          "team_1_changes": {
+            "查莉娅": "奥丽莎"
+          },
+          "team_2_changes": {},
+          "new_status": "team_1_advantage"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "末日铁拳": "温斯顿",
+            "法老之鹰": "索杰恩",
+            "源氏": "回声"
+          },
+          "new_status": "team_2_advantage"
+        }
+      ],
+      "map_result": "team_2_win"
+    }
+  ],
+  "final_result": "team_2_win"
+}

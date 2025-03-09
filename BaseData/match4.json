@@ -1,0 +1,82 @@
+{
+  "maps": [
+    {
+      "map_name": "多拉多",
+      "weaker": "team_2",
+      "starting_status": "team_1_advantage",
+      "team_1": [
+        "温斯顿",
+        "托比昂",
+        "堡垒",
+        "雾子",
+        "安娜"
+      ],
+      "team_2": [
+        "温斯顿",
+        "回声",
+        "索杰恩",
+        "禅雅塔",
+        "安娜"
+      ],
+      "events": [
+        {
+          "team_1_changes": {
+            "堡垒": "卡西迪",
+            "雾子": "布丽吉塔"
+          },
+          "team_2_changes": {},
+          "new_status": "team_1_advantage"
+        },
+        {
+          "team_1_changes": {
+            "安娜": "雾子",
+            "布丽吉塔": "禅雅塔"
+          },
+          "team_2_changes": {
+            "禅雅塔": "伊拉锐",
+            "回声": "艾什"
+          },
+          "new_status": "balanced"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "伊拉锐": "生命之梭"
+          },
+          "new_status": "team_1_advantage"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "索杰恩": "卡西迪"
+          },
+          "new_status": "balanced"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "安娜": "雾子",
+            "卡西迪": "美"
+          },
+          "new_status": "team_1_advantage"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "温斯顿": "破坏球"
+          },
+          "new_status": "team_1_advantage"
+        },
+        {
+          "team_1_changes": {},
+          "team_2_changes": {
+            "美": "探奇"
+          },
+          "new_status": "team_1_advantage"
+        }
+      ],
+      "map_result": "team_1_win"
+    }
+  ],
+  "final_result": "team_1_win"
+}
