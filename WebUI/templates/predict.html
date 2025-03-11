@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>守望先锋 2 胜率分析</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- 引入 Chart.js -->
+    <script src="https://cdn.tailwindcss.com"></script> <!-- 引入 Tailwind -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Text:wght@700&display=swap">
+    <style>
+        @font-face {
+            font-family: 'OW2';
+            src: url('/static/fonts/BigNoodleTitling.woff2') format('woff2');
+        }
+
+        body {
+            font-family: 'OW2', sans-serif;
+            background: #0d0d0d url('/static/Images/ow2_bg.jpg') no-repeat center center;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            background: rgba(10, 10, 10, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            text-align: center;
+            color: #fff;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+        }
+
+        h2 {
+            font-size: 28px;
+            color: #ff9c1a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .teams {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .team {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* 六边形头像 */
+        .hex {
+            width: 80px;
+            height: 92px;
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            border-radius: 8px; /* 让六边形稍微有圆角 */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
+        }
+
+        /* 让头像完整显示 */
+        .hex img {
+            margin-top: 10px;
+            margin-left: 10px;
+            width:80%;
+            height: 80%;
+            object-fit: cover;
+            transform: scale(1.3); /* 适当放大以填充六边形 */
+        }
+
+        .hex.blue {
+            border-color: #1A9FFF;
+        }
+
+        .hex.red {
+            border-color: #FF4A4A;
+        }
+
+        .hex:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
+        }
+
+        /* OW2 风格的胜率条 */
+        .winrate-container {
+            width: 100%;
+            height: 45px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            overflow: hidden;
+        }
+
+        .winrate-bar {
+            height: 100%;
+            transition: width 1.5s ease-in-out;
+        }
+
+        .winrate-text {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+        }
+
+        .blue {
+            background: linear-gradient(to right, #1a9fff, #0f6cbf);
+        }
+
+        .red {
+            background: linear-gradient(to right, #FF4A4A, #BF0000);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>{{ map_name }} 胜率分析</h2>
+
+        <!-- 队伍头像 -->
+        <div class="teams">
+            <!-- 队伍1 -->
+            <div class="team">
+                {% for hero in team1 %}
+                <div class="hex blue">
+                    <img src="/static/Images/{{ hero }}.png" alt="{{ hero }}">
+                </div>
+                {% endfor %}
+            </div>
+            <strong class="text-3xl text-yellow-400">VS</strong>
+            <!-- 队伍2 -->
+            <div class="team">
+                {% for hero in team2 %}
+                <div class="hex red">
+                    <img src="/static/Images/{{ hero }}.png" alt="{{ hero }}">
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- 胜率条 -->
+        <div class="relative">
+            <div class="winrate-container">
+                <div class="winrate-bar blue" id="team1-bar" style="width: {{ team1_winrate }}%;"></div>
+                <div class="winrate-bar red" id="team2-bar" style="width: {{ team2_winrate }}%;"></div>
+                <div class="winrate-text">
+                    <span>{{ team1_winrate }}%</span>
+                    <span>{{ team2_winrate }}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 动态调整胜率条
+        window.onload = function () {
+            document.getElementById("team1-bar").style.width = "{{ team1_winrate }}%";
+            document.getElementById("team2-bar").style.width = "{{ team2_winrate }}%";
+        };
+    </script>
+</body>
+</html>

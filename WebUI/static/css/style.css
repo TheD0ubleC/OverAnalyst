@@ -1,0 +1,8 @@
+.draggable {
+    cursor: grab;
+}
+
+.slot {
+    width: 80px;
+    height: 80px;
+}

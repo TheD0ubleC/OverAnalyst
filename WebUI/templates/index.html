@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OverAnalyst 队伍配置</title>
+  <!-- Tailwind CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- 你的自定义CSS -->
+  <link href="static/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100">
+  <!-- ========== 移动端固定槽位 ========== -->
+  <div id="mobileTeam1Slots"
+    class="fixed top-0 left-0 right-0 bg-white shadow p-2 flex justify-around space-x-2 md:hidden z-50">
+    <div id="mTeam1Tank" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="tank"></div>
+    <div id="mTeam1Dps1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="dps"></div>
+    <div id="mTeam1Dps2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="dps"></div>
+    <div id="mTeam1Support1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="support"></div>
+    <div id="mTeam1Support2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="support"></div>
+  </div>
+  <div id="mobileTeam2Slots"
+    class="fixed bottom-0 left-0 right-0 bg-white shadow p-2 flex justify-around space-x-2 md:hidden z-50">
+    <div id="mTeam2Tank" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="tank"></div>
+    <div id="mTeam2Dps1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="dps"></div>
+    <div id="mTeam2Dps2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="dps"></div>
+    <div id="mTeam2Support1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="support"></div>
+    <div id="mTeam2Support2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+      data-role="support"></div>
+  </div>
+
+  <!-- ========== 主体内容区域 ========== -->
+  <!-- 为移动端内容预留上下内边距，避免被固定槽位遮挡 -->
+  <div class="pt-24 pb-24 md:pt-0 md:pb-0">
+    <!-- 桌面版布局：左右英雄列表，中间槽位（带分隔线） 只在 md 及以上显示 -->
+    <div class="hidden md:flex max-w-8xl mx-auto p-8 rounded-lg ">
+      <!-- 队伍 1 英雄列表 -->
+      <div class="w-1/3">
+        <h2 class="text-lg font-semibold mb-2 text-gray-700">队伍 1 坦克列表</h2>
+        <div id="team1TankList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 1 输出列表</h2>
+        <div id="team1DpsList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 1 辅助列表</h2>
+        <div id="team1SupportList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+      </div>
+
+      <!-- 队伍1槽位（桌面） -->
+      <div class="w-1/6 flex flex-col items-center md:mt-10 hidden md:flex">
+        <div id="team1Tank" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center mb-4"
+          data-role="tank"></div>
+        <div class="flex gap-4 mb-4">
+          <div id="team1Dps1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="dps"></div>
+          <div id="team1Dps2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="dps"></div>
+        </div>
+        <div class="flex gap-4">
+          <div id="team1Support1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="support"></div>
+          <div id="team1Support2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="support"></div>
+        </div>
+      </div>
+
+      <!-- 分隔线 -->
+      <div class="hidden md:block w-0.5 bg-red-500 h-full mx-5"></div>
+
+      <!-- 队伍2槽位（桌面） -->
+      <div class="w-1/6 flex flex-col items-center md:mt-10 hidden md:flex">
+        <div id="team2Tank" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center mb-4"
+          data-role="tank"></div>
+        <div class="flex gap-4 mb-4">
+          <div id="team2Dps1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="dps"></div>
+          <div id="team2Dps2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="dps"></div>
+        </div>
+        <div class="flex gap-4">
+          <div id="team2Support1" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="support"></div>
+          <div id="team2Support2" class="slot border-2 border-dashed border-gray-400 flex items-center justify-center"
+            data-role="support"></div>
+        </div>
+      </div>
+
+      <!-- 队伍 2 英雄列表 -->
+      <div class="w-1/3">
+        <h2 class="text-lg font-semibold mb-2 text-gray-700">队伍 2 坦克列表</h2>
+        <div id="team2TankList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 2 输出列表</h2>
+        <div id="team2DpsList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 2 辅助列表</h2>
+        <div id="team2SupportList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-6 gap-1"></div>
+      </div>
+    </div>
+
+    <!-- ========== 移动端英雄列表 (非固定槽位部分) 只在移动端显示 -->
+    <div class="md:hidden max-w-4xl mx-auto px-4">
+      <!-- 队伍1 英雄列表 -->
+      <div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 1 英雄列表</h2>
+        <h3 class="text-sm font-medium">坦克</h3>
+        <div id="mTeam1TankList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+        <h3 class="text-sm font-medium">输出</h3>
+        <div id="mTeam1DpsList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+        <h3 class="text-sm font-medium">辅助</h3>
+        <div id="mTeam1SupportList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+      </div>
+      <!-- 队伍2 英雄列表，上方增加分割线 -->
+      <div>
+        <div class="border-t border-gray-300 my-4"></div>
+        <h2 class="text-lg font-semibold mt-4 mb-2 text-gray-700">队伍 2 英雄列表</h2>
+        <h3 class="text-sm font-medium">坦克</h3>
+        <div id="mTeam2TankList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+        <h3 class="text-sm font-medium">输出</h3>
+        <div id="mTeam2DpsList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+        <h3 class="text-sm font-medium">辅助</h3>
+        <div id="mTeam2SupportList" class="bg-gray-200 p-2 rounded-lg grid grid-cols-5 gap-1 mb-2"></div>
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto px-4 pb-8 md:pb-4">
+      <div class="text-center">
+        <button
+          class="w-11/12 max-w-lg bg-blue-500 text-white text-lg md:text-xl px-8 py-4 rounded-lg hover:bg-blue-600 transition-transform active:scale-95"
+          onclick="openModal()">
+          提交
+        </button>
+      </div>
+    </div>
+
+    <!-- 悬浮窗（默认隐藏） -->
+    <div id="modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+      <div class="bg-white rounded-lg p-6 w-10/12 max-w-md shadow-lg">
+        <h2 class="text-xl font-semibold mb-4">请选择操作</h2>
+
+        <!-- 按钮选项 -->
+        <div class="space-y-4">
+          <button class="w-full bg-green-500 text-white py-3 rounded hover:bg-green-600" onclick="option1()">胜率计算</button>
+          <button class="w-full bg-green-500 text-white py-3 rounded hover:bg-green-600" onclick="option2()">队伍1 智能换人</button>
+          <button class="w-full bg-green-500 text-white py-3 rounded hover:bg-green-600" onclick="option3()">队伍2 智能换人</button>
+        </div>
+
+        <!-- 关闭按钮 -->
+        <button class="mt-6 w-full bg-gray-300 text-black py-2 rounded hover:bg-gray-400"
+          onclick="closeModal()">取消</button>
+      </div>
+    </div>
+
+  </div>
+
+
+
+  <!-- 你的自定义 JS -->
+  <script src="static/js/script.js"></script>
+</body>
+
+</html>
